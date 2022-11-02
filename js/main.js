@@ -1,0 +1,3 @@
+function dugme() {
+    event.preventDefault();
+}
