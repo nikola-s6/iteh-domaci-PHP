@@ -18,6 +18,7 @@
 
 <body>
 
+
     <div class="wrapper fadeInDown">
         <div id="formContent">
             <!-- Tabs Titles -->
@@ -31,12 +32,14 @@
             <form>
                 <input type="text" id="login" class="fadeIn second" name="login" placeholder="username">
                 <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-                <input type="submit" class="fadeIn fourth" value="Log In">
+                <input type="text" id="password" class="fadeIn third" name="login" placeholder="repeat password">
+
+                <input type="submit" class="fadeIn fourth" value="Register">
             </form>
 
             <!-- Remind Passowrd -->
             <div id="formFooter">
-                <a class="underlineHover" href="register.php">Don't have an account? Register here!</a>
+                <a class="underlineHover" href="login.php">Already have and account? Log in here!</a>
             </div>
 
         </div>
