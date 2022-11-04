@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Sidebar 02</title>
+    <title>Pivoteka</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -10,6 +10,8 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/home-bootstrap.css">
+    <link rel="stylesheet" href="/css/table.css">
+    <link rel="shortcut icon" href="/util/favicon.png" type="image/x-icon">
 </head>
 
 <body>
@@ -123,11 +125,45 @@
         </nav>
 
         <!-- Page Content  -->
-        <div id="content" class="p-4 p-md-5 pt-5">
-
-            <h2 class="mb-4">Home Page</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <div id="content">
+            <div class="limiter">
+                <div class="container-table100">
+                    <div class="wrap-table100">
+                        <div class="table100">
+                            <table>
+                                <thead>
+                                    <tr class="table100-head">
+                                        <th class="column1"></th>
+                                        <th class="column2">Name</th>
+                                        <th class="column3">Country of origin</th>
+                                        <th class="column4">Type</th>
+                                        <th class="column5">Size</th>
+                                        <th class="column6">Alcohol %</th>
+                                        <th class="column7">Rating</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="column1 radioStyle">
+                                            <label class="radio-btn">
+                                                <input type="radio" class="form-check-input " name="flexRadioDisabled">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            <!-- <input type="radio" class="form-check-input " name="flexRadioDisabled"> -->
+                                        </td>
+                                        <td class="column2">Blanc</td>
+                                        <td class="column3">France</td>
+                                        <td class="column4">Wheat</td>
+                                        <td class="column5">4.5</td>
+                                        <td class="column6">0.33</td>
+                                        <td class="column7">9.2</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
