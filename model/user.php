@@ -25,6 +25,10 @@ class User
     {
         $q = "insert into user (username, password) values ('" . $username . "', '" . $password . "');";
 
-        return $conn->query($q);
+        try {
+            return $conn->query($q);
+        } catch (\Throwable $th) {
+            echo '<script type="text/javascript">console.log(' . $th . ';</script>';
+        }
     }
 }

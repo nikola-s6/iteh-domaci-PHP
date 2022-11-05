@@ -1,3 +1,33 @@
+<?php
+
+require "../database/dbBroker.php";
+require "../model/user.php";
+
+
+session_start();
+
+if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['passwordCheck'])) {
+    if ($_POST['password'] == $_POST['passwordCheck']) {
+        $username1 = $_POST['username'];
+        $password1 = $_POST['password'];
+        $result = User::register($username1, $password1, $conn);
+
+        if ($result == 1) {
+            header('Location: login.php');
+            exit();
+        } else {
+            echo '<script type="text/javascript">alert("Username already exists!");</script>';
+        }
+    } else {
+        echo '<script type="text/javascript">alert("Passwords do not match!");</script>';
+    }
+}
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,12 +59,12 @@
             </div>
 
             <!-- Login Form -->
-            <form>
-                <input type="text" id="login" class="fadeIn second" name="login" placeholder="username">
-                <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-                <input type="text" id="password" class="fadeIn third" name="login" placeholder="repeat password">
+            <form method="POST">
+                <input type="text" id="login" class="fadeIn second form-control" name="username" placeholder="username">
+                <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+                <input type="password" id="passwordCheck" class="fadeIn fourth block" name="passwordCheck" placeholder="repeat password">
 
-                <input type="submit" class="fadeIn fourth" value="Register">
+                <input type="submit" class="fadeIn fifth" value="Register" id="btnRegister">
             </form>
 
             <!-- Remind Passowrd -->
@@ -45,6 +75,8 @@
         </div>
     </div>
 
+
+    <script src="/js/login.js"></script>
 
 </body>
 
