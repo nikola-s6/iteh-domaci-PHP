@@ -17,7 +17,7 @@ class User
     }
     public static function logIn($username, $password, mysqli $conn)
     {
-        $q = "select * from user where name= '" . $username . "' and password ='" . $password . "' limit 1;";
+        $q = "select * from user where username= '" . $username . "' and password ='" . $password . "' limit 1;";
 
         return $conn->query($q);
     }

@@ -1,3 +1,38 @@
+<?php
+
+
+require "../database/dbBroker.php";
+require "../model/user.php";
+
+
+session_start();
+
+if (isset($_POST['username']) && isset($_POST['password'])) {
+    $name1 = $_POST['username'];
+    $password1 = $_POST['password'];
+
+    $result = User::logIn($name1, $password1, $conn);
+
+    if ($result->num_rows == 1) {
+        echo "You logged in sccessfully";
+        $_SESSION['isLogged'] = "true";
+        $_SESSION['userID'] = $result->fetch_assoc()['userID'];
+        $_SESSION['username'] = $result->fetch_assoc()['username'];
+        header('Location: home.php');
+        exit();
+    }
+}
+
+
+
+
+
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,9 +63,9 @@
             </div>
 
             <!-- Login Form -->
-            <form>
-                <input type="text" id="login" class="fadeIn second" name="login" placeholder="username">
-                <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+            <form method="POST">
+                <input type="text" id="login" class="fadeIn second" name="username" placeholder="username">
+                <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
                 <input type="submit" class="fadeIn fourth" value="Log In">
             </form>
 
