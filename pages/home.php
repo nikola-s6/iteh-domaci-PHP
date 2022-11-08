@@ -1,3 +1,28 @@
+<?php
+
+require "../database/dbBroker.php";
+require "../model/beer.php";
+
+session_start();
+
+if ($_SESSION['isLogged'] != "true") {
+    header("Location: login.php");
+    die();
+}
+
+$beers = Beer::getAllBeers($_SESSION['userID'], $conn);
+
+if (!$beers) {
+    echo "Error";
+}
+
+
+
+?>
+
+
+
+
 <!doctype html>
 <html lang="en">
 
@@ -143,13 +168,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <!-- <tr>
                                         <td class="column1 radioStyle">
                                             <label class="radio-btn">
                                                 <input type="radio" class="form-check-input " name="flexRadioDisabled">
                                                 <span class="checkmark"></span>
                                             </label>
-                                            <!-- <input type="radio" class="form-check-input " name="flexRadioDisabled"> -->
                                         </td>
                                         <td class="column2">Blanc</td>
                                         <td class="column3">France</td>
@@ -157,7 +181,29 @@
                                         <td class="column5">4.5</td>
                                         <td class="column6">0.33</td>
                                         <td class="column7">9.2</td>
-                                    </tr>
+                                    </tr> -->
+
+                                    <?php
+                                    while ($row = $beers->fetch_array()) {
+                                    ?>
+                                        <tr id="tr-<?php echo $row["beerID"] ?> ">
+                                            <td class="column1 radioStyle">
+                                                <label class="radio-btn">
+                                                    <input type="radio" class="form-check-input " name="flexRadioDisabled" id="radiobtn" value=<?php echo $row["beerID"] ?>>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </td>
+                                            <td class="column2"><?php echo $row["name"] ?></td>
+                                            <td class="column3"><?php echo $row["country"] ?></td>
+                                            <td class="column4"><?php echo $row["type"] ?></td>
+                                            <td class="column5"><?php echo $row["size"] ?></td>
+                                            <td class="column6"><?php echo $row["alcohol"] ?></td>
+                                            <td class="column7"><?php echo $row["rating"] ?></td>
+
+                                        </tr>
+                                    <?php
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
