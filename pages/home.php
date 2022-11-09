@@ -57,23 +57,28 @@ if (!$beers) {
                         <a href="#addSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Add new </a>
                         <form action="" method="post" id="addSubmenu" class="collapse">
                             <div class="form-group"><input type="text" placeholder="name" class="form-control"></div>
-                            <div class="form-group"><input type="text" placeholder="name" class="form-control"></div>
                             <div class="form-group"><input type="text" placeholder="country of origin" class="form-control"></div>
                             <div class="form-group">
-                                <select name="" id="" class="form-control">
-                                    <option value="">Ale</option>
-                                    <option value="">Lager</option>
-                                    <option value="">Porter</option>
-                                    <option value="">Stout</option>
-                                    <option value="">Blonde Ale</option>
-                                    <option value="">Brown Ale</option>
-                                    <option value="">Indian Pale Ale</option>
-                                    <option value="">Wheat</option>
-                                    <option value="">Pilsner</option>
-                                    <option value="">Sour Ale</option>
+                                <select name="" id="typeSelectionAdd" class="form-control">
+                                    <option value="Ale">Ale</option>
+                                    <option value="Lager">Lager</option>
+                                    <option value="Porter">Porter</option>
+                                    <option value="Stout">Stout</option>
+                                    <option value="Blonde Ale">Blonde Ale</option>
+                                    <option value="Brown Ale">Brown Ale</option>
+                                    <option value="Indian Pale Ale">Indian Pale Ale</option>
+                                    <option value="Wheat">Wheat</option>
+                                    <option value="Pilsner">Pilsner</option>
+                                    <option value="Sour Ale">Sour Ale</option>
                                 </select>
                             </div>
                             <div class="form-group"><input type="number" placeholder="Alcohol %" class="form-control"></div>
+                            <div class="form-group">
+                                <select name="" id="sizeSelectionAdd" class="form-control">
+                                    <option value="0.33">0.33</option>
+                                    <option value="0.5">0.5</option>
+                                </select>
+                            </div>
                             <div class="form-group"><input type="number" min="1" max="10" placeholder="Rating (1-10)" class="form-control"></div>
                             <div class="form-group"><button onclick="dugme()" class="btn btn-success btn-block" style="background-color: #FDEEDC; color: #E38B29; border: none;">Add</button></div>
 
@@ -91,6 +96,14 @@ if (!$beers) {
                     </li>
 
                     <li>
+                        <a href="#orderSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Order</a>
+                        <ul class="collapse list-unstyled" id="orderSubmenu">
+                            <div class="form-group"><button onclick="dugme()" class="btn btn-success btn-block" style="background-color: #FDEEDC; color: #E38B29; border: none;">Order by Rating</button></div>
+                            <div class="form-group"><button onclick="dugme()" class="btn btn-success btn-block" style="background-color: #FDEEDC; color: #E38B29; border: none;">Order by Name</button></div>
+                        </ul>
+                    </li>
+
+                    <li>
 
                         <a href="#updateSubmenu" data-toggle="collapse" style="border-top:none;">
                             <button onclick="dugme()" class="btn btn-success btn-block" style="background-color: #FDEEDC; color: #E38B29; border: none;">Update selected</button>
@@ -99,25 +112,30 @@ if (!$beers) {
                         <form action="" method="post" id="updateSubmenu" class="collapse">
                             <div class="form-group"><input type="text" placeholder="id" class="form-control" readonly></div>
                             <div class="form-group"><input type="text" placeholder="name" class="form-control"></div>
-                            <div class="form-group"><input type="text" placeholder="name" class="form-control"></div>
                             <div class="form-group"><input type="text" placeholder="country of origin" class="form-control"></div>
                             <div class="form-group">
-                                <select name="" id="" class="form-control">
-                                    <option value="">Ale</option>
-                                    <option value="">Lager</option>
-                                    <option value="">Porter</option>
-                                    <option value="">Stout</option>
-                                    <option value="">Blonde Ale</option>
-                                    <option value="">Brown Ale</option>
-                                    <option value="">Indian Pale Ale</option>
-                                    <option value="">Wheat</option>
-                                    <option value="">Pilsner</option>
-                                    <option value="">Sour Ale</option>
+                                <select name="" id="typeSelectionUpdate" class="form-control">
+                                    <option value="Ale">Ale</option>
+                                    <option value="Lager">Lager</option>
+                                    <option value="Porter">Porter</option>
+                                    <option value="Stout">Stout</option>
+                                    <option value="Blonde Ale">Blonde Ale</option>
+                                    <option value="Brown Ale">Brown Ale</option>
+                                    <option value="Indian Pale Ale">Indian Pale Ale</option>
+                                    <option value="Wheat">Wheat</option>
+                                    <option value="Pilsner">Pilsner</option>
+                                    <option value="Sour Ale">Sour Ale</option>
                                 </select>
                             </div>
                             <div class="form-group"><input type="number" placeholder="Alcohol %" class="form-control"></div>
+                            <div class="form-group">
+                                <select name="" id="sizeSelectionUpdate" class="form-control">
+                                    <option value="0.33">0.33</option>
+                                    <option value="0.5">0.5</option>
+                                </select>
+                            </div>
                             <div class="form-group"><input type="number" min="1" max="10" placeholder="Rating (1-10)" class="form-control"></div>
-                            <div class="form-group"><button onclick="dugme()" class="btn btn-success btn-block" style="background-color: #FDEEDC; color: #E38B29; border: none;">Update</button></div>
+                            <div class="form-group"><button onclick="dugme()" class="btn btn-success btn-block" style="background-color: #FDEEDC; color: #E38B29; border: none;">Save changes</button></div>
 
 
                         </form>
@@ -138,7 +156,7 @@ if (!$beers) {
                     <div class="container">
                         <div class="row">
                             <div class="col text-center">
-                                <a href="login.php"><button class="btn btn-info ">Log out</button></a>
+                                <a href="../handler/logut.php"><button class="btn btn-info ">Log out</button></a>
                             </div>
                         </div>
                     </div>
