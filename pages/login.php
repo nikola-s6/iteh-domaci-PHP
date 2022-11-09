@@ -1,38 +1,3 @@
-<?php
-
-
-require "../database/dbBroker.php";
-require "../model/user.php";
-
-
-session_start();
-
-if (isset($_POST['username']) && isset($_POST['password'])) {
-    $name1 = $_POST['username'];
-    $password1 = $_POST['password'];
-
-    $result = User::logIn($name1, $password1, $conn);
-
-    if ($result->num_rows == 1) {
-        echo "You logged in sccessfully";
-        $_SESSION['isLogged'] = "true";
-        $_SESSION['userID'] = $result->fetch_assoc()['userID'];
-        $_SESSION['username'] = $result->fetch_assoc()['username'];
-        header('Location: home.php');
-        exit();
-    }
-}
-
-
-
-
-
-?>
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,21 +20,19 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
     <div class="wrapper fadeInDown">
         <div id="formContent">
-            <!-- Tabs Titles -->
-
             <!-- Icon -->
             <div class="fadeIn first">
                 <img src="/util/logo.png" id="icon" alt="User Icon" />
             </div>
 
             <!-- Login Form -->
-            <form method="POST">
+            <form method="POST" id="formLogin">
                 <input type="text" id="login" class="fadeIn second" name="username" placeholder="username">
                 <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
                 <input type="submit" class="fadeIn fourth" value="Log In">
             </form>
 
-            <!-- Remind Passowrd -->
+            <!-- Register form link -->
             <div id="formFooter">
                 <a class="underlineHover" href="register.php">Don't have an account? Register here!</a>
             </div>
@@ -77,7 +40,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         </div>
     </div>
 
-
+    <script src="../js/main.js"></script>
 </body>
 
 </html>

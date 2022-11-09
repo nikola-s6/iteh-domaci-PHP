@@ -12,8 +12,6 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['pass
         $password1 = $_POST['password'];
         $result = User::register($username1, $password1, $conn);
 
-        // echo $result;
-
         if ($result == 1) {
             echo 'success';
         } else {

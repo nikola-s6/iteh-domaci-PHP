@@ -7,15 +7,6 @@ $("#formRegister").submit(function () {
     const form = $(this)
     const serialized = form.serialize()
 
-    const registerData = form.serializeArray().reduce(function (json, { name, value }) {
-        json[name] = value
-        return json
-    }, {}
-    )
-
-
-    // console.log(registerData);
-    // console.log(serialized)
 
     request = $.ajax({
         url: "../handler/registerHandler.php",
@@ -45,4 +36,34 @@ $("#formRegister").submit(function () {
         console.log("Error occured: " + textStatus, errorThrown)
     })
 
+})
+
+
+$('#formLogin').submit(function () {
+    event.preventDefault()
+    const form = $(this)
+    const serialized = form.serialize()
+
+    request = $.ajax({
+        url: "../handler/loginHandler.php",
+        type: "post",
+        data: serialized
+    })
+
+    request.done(function (response, textStatus, jqXHR) {
+        if (response == 'success') {
+            document.location.href = '../pages/home.php'
+        } else if (response == 'noResult') {
+            alert('This username/password combination does not exist!')
+        } else if (response == 'noFill') {
+            alert("You must fill all fields!")
+        } else {
+            console.log("Error")
+        }
+        console.log(response);
+    })
+
+    request.fail(function (jqXHR, textStatus, errorThrown) {
+        console.log("Error occured: " + textStatus, errorThrown)
+    })
 })

@@ -168,21 +168,6 @@ if (!$beers) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- <tr>
-                                        <td class="column1 radioStyle">
-                                            <label class="radio-btn">
-                                                <input type="radio" class="form-check-input " name="flexRadioDisabled">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </td>
-                                        <td class="column2">Blanc</td>
-                                        <td class="column3">France</td>
-                                        <td class="column4">Wheat</td>
-                                        <td class="column5">4.5</td>
-                                        <td class="column6">0.33</td>
-                                        <td class="column7">9.2</td>
-                                    </tr> -->
-
                                     <?php
                                     while ($row = $beers->fetch_array()) {
                                     ?>
