@@ -1,33 +1,3 @@
-<?php
-
-require "../database/dbBroker.php";
-require "../model/user.php";
-
-
-session_start();
-
-if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['passwordCheck'])) {
-    if ($_POST['password'] == $_POST['passwordCheck']) {
-        $username1 = $_POST['username'];
-        $password1 = $_POST['password'];
-        $result = User::register($username1, $password1, $conn);
-
-        if ($result == 1) {
-            header('Location: login.php');
-            exit();
-        } else {
-            echo '<script type="text/javascript">alert("Username already exists!");</script>';
-        }
-    } else {
-        echo '<script type="text/javascript">alert("Passwords do not match!");</script>';
-    }
-}
-
-
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,15 +21,13 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['pass
 
     <div class="wrapper fadeInDown">
         <div id="formContent">
-            <!-- Tabs Titles -->
-
             <!-- Icon -->
             <div class="fadeIn first">
                 <img src="/util/logo.png" id="icon" alt="User Icon" />
             </div>
 
-            <!-- Login Form -->
-            <form method="POST">
+            <!-- Register Form -->
+            <form method="POST" id="formRegister">
                 <input type="text" id="login" class="fadeIn second form-control" name="username" placeholder="username">
                 <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
                 <input type="password" id="passwordCheck" class="fadeIn fourth block" name="passwordCheck" placeholder="repeat password">
@@ -67,7 +35,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['pass
                 <input type="submit" class="fadeIn fifth" value="Register" id="btnRegister">
             </form>
 
-            <!-- Remind Passowrd -->
+            <!-- Log in link -->
             <div id="formFooter">
                 <a class="underlineHover" href="login.php">Already have and account? Log in here!</a>
             </div>
@@ -77,6 +45,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['pass
 
 
     <script src="/js/login.js"></script>
+    <script src="/js/main.js"></script>
 
 </body>
 
