@@ -40,6 +40,7 @@ if (!$beers) {
 </head>
 
 <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <div class="wrapper d-flex align-items-stretch">
         <nav id="sidebar">
@@ -55,11 +56,11 @@ if (!$beers) {
                 <ul class="list-unstyled components mb-5">
                     <li class="active">
                         <a href="#addSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Add new </a>
-                        <form action="" method="post" id="addSubmenu" class="collapse">
-                            <div class="form-group"><input type="text" placeholder="name" class="form-control"></div>
-                            <div class="form-group"><input type="text" placeholder="country of origin" class="form-control"></div>
+                        <form method="POST" id="addSubmenu" class="collapse">
+                            <div class="form-group"><input type="text" placeholder="name" class="form-control" name="name" id="addFormName"></div>
+                            <div class="form-group"><input type="text" placeholder="country of origin" class="form-control" name="country" id="addFormCountry"></div>
                             <div class="form-group">
-                                <select name="" id="typeSelectionAdd" class="form-control">
+                                <select name="" id="cccccc" class="form-control" name="type">
                                     <option value="Ale">Ale</option>
                                     <option value="Lager">Lager</option>
                                     <option value="Porter">Porter</option>
@@ -72,16 +73,15 @@ if (!$beers) {
                                     <option value="Sour Ale">Sour Ale</option>
                                 </select>
                             </div>
-                            <div class="form-group"><input type="number" placeholder="Alcohol %" class="form-control"></div>
+                            <div class="form-group"><input type="number" step="0.01" placeholder="Alcohol %" class="form-control" name="alcohol" id="addFormAlcohol"></div>
                             <div class="form-group">
-                                <select name="" id="sizeSelectionAdd" class="form-control">
+                                <select name="" id="sizeSelectionAdd" class="form-control" name="size">
                                     <option value="0.33">0.33</option>
                                     <option value="0.5">0.5</option>
                                 </select>
                             </div>
-                            <div class="form-group"><input type="number" min="1" max="10" placeholder="Rating (1-10)" class="form-control"></div>
-                            <div class="form-group"><button onclick="dugme()" class="btn btn-success btn-block" style="background-color: #FDEEDC; color: #E38B29; border: none;">Add</button></div>
-
+                            <div class="form-group"><input type="number" step="0.01" max="10" min="1" placeholder="Rating (1-10)" class="form-control" name="rating" id="addFormRating"></div>
+                            <div class="form-group"><input type="submit" class="btn btn-block" value="Add" style="background-color: #FDEEDC; color: #E38B29; border: none;"></div>
 
                         </form>
                         <!-- </ul> -->
@@ -173,7 +173,7 @@ if (!$beers) {
                 <div class="container-table100">
                     <div class="wrap-table100">
                         <div class="table100">
-                            <table>
+                            <table id="table">
                                 <thead>
                                     <tr class="table100-head">
                                         <th class="column1"></th>

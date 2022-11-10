@@ -1,7 +1,7 @@
 function dugme() {
     event.preventDefault();
 }
-
+// Register
 $("#formRegister").submit(function () {
     event.preventDefault()
     const form = $(this)
@@ -38,11 +38,12 @@ $("#formRegister").submit(function () {
 
 })
 
-
+// Login
 $('#formLogin').submit(function () {
     event.preventDefault()
     const form = $(this)
     const serialized = form.serialize()
+
 
     request = $.ajax({
         url: "../handler/loginHandler.php",
@@ -67,3 +68,65 @@ $('#formLogin').submit(function () {
         console.log("Error occured: " + textStatus, errorThrown)
     })
 })
+
+// Add beer
+$('#addSubmenu').submit(function () {
+
+    event.preventDefault()
+    const form = $(this)
+    var serialized = form.serialize()
+
+    serialized = serialized + "&type=" + $('#typeSelectionAdd').val() + "&size=" + $('#sizeSelectionAdd').val()
+
+    request = $.ajax({
+        url: "../handler/add.php",
+        type: "post",
+        data: serialized
+    })
+
+    request.done(function (response, textStatus, jqXHR) {
+        if (response == "success") {
+            resetAddValues()
+            appendLastAdded()
+        } else {
+            console.log(response)
+        }
+    })
+
+    request.fail(function (jqXHR, textStatus, errorThrown) {
+        console.log("Error occured: " + textStatus, errorThrown)
+    })
+
+})
+
+function resetAddValues() {
+    $('#addFormName').val("")
+    $('#addFormCountry').val("")
+    $("#addFormAlcohol").val("")
+    $("#addFormRating").val("")
+    $("#sizeSelectionAdd")[0].selectedIndex = 0
+    $("#typeSelectionAdd")[0].selectedIndex = 0
+}
+
+function appendLastAdded() {
+    $.get("../handler/getLastAddedBeer.php", function (response) {
+        response = response.slice(1, -1)
+        var obj = JSON.parse(response)
+        $('#table tbody').append(`
+        <tr id="tr-${obj.beerID}">
+            <td class="column1 radioStyle">
+                <label class="radio-btn">
+                    <input type="radio" class="form-check-input " name="flexRadioDisabled" id="radiobtn" value=${obj.beerID}>
+                    <span class="checkmark"></span>
+                </label>
+            </td>
+            <td class="column2">${obj.name}</td>
+            <td class="column3">${obj.country}</td>
+            <td class="column4">${obj.type}</td>
+            <td class="column5">${obj.size}</td>
+            <td class="column6">${obj.alcohol}</td>
+            <td class="column7">${obj.rating}</td>
+        </tr>
+        `)
+    })
+}
