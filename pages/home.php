@@ -32,15 +32,21 @@ if (!$beers) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/home-bootstrap.css">
     <link rel="stylesheet" href="/css/table.css">
     <link rel="shortcut icon" href="/util/favicon.png" type="image/x-icon">
+
+
+
+
 </head>
 
 <body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 
     <div class="wrapper d-flex align-items-stretch">
         <nav id="sidebar">
@@ -60,7 +66,7 @@ if (!$beers) {
                             <div class="form-group"><input type="text" placeholder="name" class="form-control" name="name" id="addFormName"></div>
                             <div class="form-group"><input type="text" placeholder="country of origin" class="form-control" name="country" id="addFormCountry"></div>
                             <div class="form-group">
-                                <select name="" id="cccccc" class="form-control" name="type">
+                                <select name="" id="typeSelectionAdd" class="form-control" name="type">
                                     <option value="Ale">Ale</option>
                                     <option value="Lager">Lager</option>
                                     <option value="Porter">Porter</option>
@@ -218,7 +224,7 @@ if (!$beers) {
 
     <script src="/js/main.js"></script>
 
-    <script src="/js/jquery.min.js"></script>
+    <!-- <script src="/js/jquery.min.js"></script> -->
     <script src="/js/popper.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/home-bootstrap.js"></script>

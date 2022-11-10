@@ -110,7 +110,9 @@ function resetAddValues() {
 
 function appendLastAdded() {
     $.get("../handler/getLastAddedBeer.php", function (response) {
+        console.log(response)
         response = response.slice(1, -1)
+        console.log(response)
         var obj = JSON.parse(response)
         $('#table tbody').append(`
         <tr id="tr-${obj.beerID}">

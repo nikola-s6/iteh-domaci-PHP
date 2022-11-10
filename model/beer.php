@@ -102,13 +102,15 @@ class Beer
 
     public static function addBeer($name, $country, $type, $alcohol, $size, $rating, $userID, mysqli $conn)
     {
-        $q = "insert into beer(name, country, type, size, alcohol, ratin, userID) values('" . $name . "', '" . $country . "', '" . $type . "', '" . $alcohol . "', '" . $size . "', '" . $rating . "', '" . $userID . "';";
+        // $q = "insert into beer(name, country, type, alcohol, size, rating, userID) values('" . $name . "', '" . $country . "', '" . $type . "', '" . $alcohol . "', '" . $size . "', '" . $rating . "', '" . $userID . "';";
+        $q = "insert into beer(name, country, type, alcohol, size, rating, userID) values('$name', '$country', '$type', '$alcohol', '$size', '$rating', '$userID');";
+
         return $conn->query($q);
     }
 
-    public static function getLastAdded(mysqli $conn)
+    public static function getLastAdded($userID, mysqli $conn)
     {
-        $q = "select * from beer order by beerID desc limit 1";
+        $q = "select * from beer where userID='$userID' order by beerID desc limit 1;";
         return $conn->query($q);
     }
 }

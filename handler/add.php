@@ -3,6 +3,8 @@
 require "../database/dbBroker.php";
 require "../model/beer.php";
 
+session_start();
+
 if (
     isset($_POST['name']) && isset($_POST['country']) && isset($_POST['type']) &&
     isset($_POST['alcohol']) && isset($_POST['size']) && isset($_POST['rating'])
