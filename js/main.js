@@ -179,3 +179,80 @@ function getRadioValue() {
     }
     return 0
 }
+
+//Search
+
+function addObjectToTable(obj) {
+    $('#table tbody').append(`
+        <tr id="tr-${obj.beerID}">
+            <td class="column1 radioStyle">
+                <label class="radio-btn">
+                    <input type="radio" class="form-check-input " name="flexRadioDisabled" id="radiobtn" value=${obj.beerID}>
+                    <span class="checkmark"></span>
+                </label>
+            </td>
+            <td class="column2">${obj.name}</td>
+            <td class="column3">${obj.country}</td>
+            <td class="column4">${obj.type}</td>
+            <td class="column5">${obj.size}</td>
+            <td class="column6">${obj.alcohol}</td>
+            <td class="column7">${obj.rating}</td>
+        </tr>
+    `)
+}
+
+function show() {
+    $('#searchByNameField').val('')
+    $('#searchByIdField').val('')
+    $('#table tbody').empty()
+
+    $.get("../handler/getAllBeers.php", function (data) {
+        let array = data.split("}")
+        array.pop()
+        array.forEach(element => {
+            element = element + "}"
+
+            let obj = JSON.parse(element)
+
+            addObjectToTable(obj)
+        })
+    })
+}
+
+$('#btnShowCompleteList').click(function () {
+    show()
+})
+
+$('#searchByNameField').keyup(function () {
+    let val = $(this).val()
+
+    request = $.ajax({
+        url: "../handler/getBeersByName.php",
+        type: "post",
+        data: "name=" + val
+    })
+
+    request.done(function (response, textStatus, jqXHR) {
+        if (!(response == "failed")) {
+            console.log(response)
+            $('#table tbody').empty()
+            let array = response.split("}")
+            array.pop()
+            array.forEach(element => {
+                element = element + "}"
+
+                let obj = JSON.parse(element)
+
+                addObjectToTable(obj)
+            })
+        }
+
+    })
+
+    request.fail(function (jqXHR, textStatus, errorThrown) {
+        alert("Error occured: " + textStatus, errorThrown)
+    })
+
+
+})
+

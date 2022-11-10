@@ -95,9 +95,9 @@ if (!$beers) {
                     <li>
                         <a href="#searchSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Search</a>
                         <ul class="collapse list-unstyled" id="searchSubmenu">
-                            <div class="form-group"><button onclick="dugme()" class="btn btn-success btn-block" style="background-color: #FDEEDC; color: #E38B29; border: none;">Show complete list</button></div>
-                            <div class="form-group"><input type="text" placeholder="search by name" class="form-control"></div>
-                            <div class="form-group"><input type="text" placeholder="search by id" class="form-control"></div>
+                            <div class="form-group"><button id="btnShowCompleteList" class="btn btn-success btn-block" style="background-color: #FDEEDC; color: #E38B29; border: none;">Show complete list</button></div>
+                            <div class="form-group"><input type="text" placeholder="search by name" class="form-control" id="searchByNameField"></div>
+                            <div class="form-group"><input type="text" placeholder="search by id" class="form-control" id="searchByIdField"></div>
                         </ul>
                     </li>
 

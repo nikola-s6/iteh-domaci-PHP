@@ -119,4 +119,10 @@ class Beer
         $q = "delete from beer where beerID=$beerID;";
         return $conn->query($q);
     }
+
+    public static function getBeersByName($userID, $name, mysqli $conn)
+    {
+        $q = "select * from beer where userID = '$userID' and lower(name) like lower('%$name%');";
+        return $conn->query($q);
+    }
 }
