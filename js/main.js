@@ -108,13 +108,8 @@ function resetAddValues() {
     $("#typeSelectionAdd")[0].selectedIndex = 0
 }
 
-function appendLastAdded() {
-    $.get("../handler/getLastAddedBeer.php", function (response) {
-        console.log(response)
-        response = response.slice(1, -1)
-        console.log(response)
-        var obj = JSON.parse(response)
-        $('#table tbody').append(`
+function addObjectToTable(obj) {
+    $('#table tbody').append(`
         <tr id="tr-${obj.beerID}">
             <td class="column1 radioStyle">
                 <label class="radio-btn">
@@ -129,7 +124,14 @@ function appendLastAdded() {
             <td class="column6">${obj.alcohol}</td>
             <td class="column7">${obj.rating}</td>
         </tr>
-        `)
+    `)
+}
+
+function appendLastAdded() {
+    $.get("../handler/getLastAddedBeer.php", function (response) {
+        response = response.slice(1, -1)
+        var obj = JSON.parse(response)
+        addObjectToTable(obj)
     })
 }
 
@@ -182,24 +184,6 @@ function getRadioValue() {
 
 //Search
 
-function addObjectToTable(obj) {
-    $('#table tbody').append(`
-        <tr id="tr-${obj.beerID}">
-            <td class="column1 radioStyle">
-                <label class="radio-btn">
-                    <input type="radio" class="form-check-input " name="flexRadioDisabled" id="radiobtn" value=${obj.beerID}>
-                    <span class="checkmark"></span>
-                </label>
-            </td>
-            <td class="column2">${obj.name}</td>
-            <td class="column3">${obj.country}</td>
-            <td class="column4">${obj.type}</td>
-            <td class="column5">${obj.size}</td>
-            <td class="column6">${obj.alcohol}</td>
-            <td class="column7">${obj.rating}</td>
-        </tr>
-    `)
-}
 
 function show() {
     $('#searchByNameField').val('')
@@ -224,6 +208,7 @@ $('#btnShowCompleteList').click(function () {
 })
 
 $('#searchByNameField').keyup(function () {
+    $('#searchByIdField').val("")
     let val = $(this).val()
 
     request = $.ajax({
@@ -233,8 +218,7 @@ $('#searchByNameField').keyup(function () {
     })
 
     request.done(function (response, textStatus, jqXHR) {
-        if (!(response == "failed")) {
-            console.log(response)
+        if (!(response == "failedUserID" || response == 'failedName')) {
             $('#table tbody').empty()
             let array = response.split("}")
             array.pop()
@@ -245,6 +229,8 @@ $('#searchByNameField').keyup(function () {
 
                 addObjectToTable(obj)
             })
+        } else {
+            console.log(response);
         }
 
     })
@@ -253,6 +239,32 @@ $('#searchByNameField').keyup(function () {
         alert("Error occured: " + textStatus, errorThrown)
     })
 
+})
+
+$('#searchByIdField').keyup(function () {
+    $('#searchByNameField').val("")
+    let val = $(this).val()
+
+    if (val == '') {
+        show()
+        return
+    }
+
+    request = $.ajax({
+        url: "../handler/getBeerById.php",
+        type: "post",
+        data: "beerID=" + val
+    })
+
+    request.done(function (response, textStatus, jqXHR) {
+        if (!(response == "failed" || response == 'userIDnotSet' || response == 'failedBeerID')) {
+            $('#table tbody').empty()
+            response = response.slice(1, -1)
+            var obj = JSON.parse(response)
+            addObjectToTable(obj)
+        }
+
+    })
 
 })
 

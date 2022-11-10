@@ -125,4 +125,10 @@ class Beer
         $q = "select * from beer where userID = '$userID' and lower(name) like lower('%$name%');";
         return $conn->query($q);
     }
+
+    public static function getBeerById($userID, $beerID, mysqli $conn)
+    {
+        $q = "select * from beer where userID = '$userID' and beerID = '$beerID';";
+        return $conn->query($q);
+    }
 }
