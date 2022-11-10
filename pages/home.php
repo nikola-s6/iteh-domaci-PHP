@@ -151,7 +151,7 @@ if (!$beers) {
                         <div class="container">
                             <div class="row">
                                 <div class="col text-center">
-                                    <button class="btn btn-danger btn-block" style="margin-top: 1.2vh;">Delete selected</button>
+                                    <button class="btn btn-danger btn-block" style="margin-top: 1.2vh;" id="btnDeleteBeer">Delete selected</button>
                                 </div>
                             </div>
                         </div>
@@ -195,7 +195,7 @@ if (!$beers) {
                                     <?php
                                     while ($row = $beers->fetch_array()) {
                                     ?>
-                                        <tr id="tr-<?php echo $row["beerID"] ?> ">
+                                        <tr id="tr-<?php echo $row["beerID"] ?>">
                                             <td class="column1 radioStyle">
                                                 <label class="radio-btn">
                                                     <input type="radio" class="form-check-input " name="flexRadioDisabled" id="radiobtn" value=<?php echo $row["beerID"] ?>>

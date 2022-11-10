@@ -132,3 +132,50 @@ function appendLastAdded() {
         `)
     })
 }
+
+
+
+//Delete Beer
+
+$('#btnDeleteBeer').click(function () {
+    event.preventDefault()
+
+    var selectedRadio = getRadioValue()
+    if (selectedRadio == 0) {
+        alert('Beer radio button must be selected first!')
+        return
+    }
+
+    request = $.ajax({
+        url: "../handler/deleteBeer.php",
+        type: "post",
+        data: "beerID=" + selectedRadio
+    });
+
+    request.done(function (response, textStatus, jqXHR) {
+        if (response == "success") {
+            alert("Beer successfully deleted!")
+            $(`#tr-${selectedRadio}`).remove()
+
+        } else {
+            console.log("Failed")
+        }
+    })
+
+    request.fail(function (jqXHR, textStatus, errorThrown) {
+        console.log("Error occured: " + textStatus, errorThrown)
+    })
+
+
+})
+
+function getRadioValue() {
+    var buttons = $('#table .radio-btn input')
+
+    for (i = 0; i < buttons.length; i++) {
+        if (buttons[i].checked) {
+            return buttons[i].value
+        }
+    }
+    return 0
+}

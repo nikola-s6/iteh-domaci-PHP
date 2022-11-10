@@ -113,4 +113,10 @@ class Beer
         $q = "select * from beer where userID='$userID' order by beerID desc limit 1;";
         return $conn->query($q);
     }
+
+    public static function delete($beerID, mysqli $conn)
+    {
+        $q = "delete from beer where beerID=$beerID;";
+        return $conn->query($q);
+    }
 }
