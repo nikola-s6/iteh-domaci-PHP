@@ -131,4 +131,10 @@ class Beer
         $q = "select * from beer where userID = '$userID' and beerID = '$beerID';";
         return $conn->query($q);
     }
+
+    public static function updateBeer($beerID, $name, $country, $type, $alcohol, $size, $rating, mysqli $conn)
+    {
+        $q = "update beer set name='$name', country='$country', type='$type', alcohol='$alcohol', size='$size', rating='$rating' where beerID='$beerID';";
+        return $conn->query($q);
+    }
 }

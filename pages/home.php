@@ -66,7 +66,7 @@ if (!$beers) {
                             <div class="form-group"><input type="text" placeholder="name" class="form-control" name="name" id="addFormName"></div>
                             <div class="form-group"><input type="text" placeholder="country of origin" class="form-control" name="country" id="addFormCountry"></div>
                             <div class="form-group">
-                                <select name="" id="typeSelectionAdd" class="form-control" name="type">
+                                <select id="typeSelectionAdd" class="form-control" name="type">
                                     <option value="Ale">Ale</option>
                                     <option value="Lager">Lager</option>
                                     <option value="Porter">Porter</option>
@@ -81,7 +81,7 @@ if (!$beers) {
                             </div>
                             <div class="form-group"><input type="number" step="0.01" placeholder="Alcohol %" class="form-control" name="alcohol" id="addFormAlcohol"></div>
                             <div class="form-group">
-                                <select name="" id="sizeSelectionAdd" class="form-control" name="size">
+                                <select id="sizeSelectionAdd" class="form-control" name="size">
                                     <option value="0.33">0.33</option>
                                     <option value="0.5">0.5</option>
                                 </select>
@@ -112,15 +112,15 @@ if (!$beers) {
                     <li>
 
                         <a href="#updateSubmenu" data-toggle="collapse" style="border-top:none;">
-                            <button onclick="dugme()" class="btn btn-success btn-block" style="background-color: #FDEEDC; color: #E38B29; border: none;">Update selected</button>
+                            <button id="btnUpdate" class="btn btn-success btn-block" style="background-color: #FDEEDC; color: #E38B29; border: none;">Update selected</button>
                         </a>
 
-                        <form action="" method="post" id="updateSubmenu" class="collapse">
-                            <div class="form-group"><input type="text" placeholder="id" class="form-control" readonly></div>
-                            <div class="form-group"><input type="text" placeholder="name" class="form-control"></div>
-                            <div class="form-group"><input type="text" placeholder="country of origin" class="form-control"></div>
+                        <form method="POST" id="updateSubmenu" class="collapse">
+                            <div class="form-group"><input type="text" name="beerID" placeholder="id" class="form-control" id="updateIdField" readonly></div>
+                            <div class="form-group"><input id="updateNameField" name="name" type="text" placeholder="name" class="form-control"></div>
+                            <div class="form-group"><input id="updateCountryField" name="country" type="text" placeholder="country of origin" class="form-control"></div>
                             <div class="form-group">
-                                <select name="" id="typeSelectionUpdate" class="form-control">
+                                <select name="type" id="typeSelectionUpdate" class="form-control">
                                     <option value="Ale">Ale</option>
                                     <option value="Lager">Lager</option>
                                     <option value="Porter">Porter</option>
@@ -133,15 +133,15 @@ if (!$beers) {
                                     <option value="Sour Ale">Sour Ale</option>
                                 </select>
                             </div>
-                            <div class="form-group"><input type="number" placeholder="Alcohol %" class="form-control"></div>
+                            <div class="form-group"><input type="number" step="0.01" placeholder="Alcohol %" class="form-control" id="updateFormAlcohol" name="alcohol"></div>
                             <div class="form-group">
-                                <select name="" id="sizeSelectionUpdate" class="form-control">
+                                <select name="size" id="sizeSelectionUpdate" class="form-control">
                                     <option value="0.33">0.33</option>
                                     <option value="0.5">0.5</option>
                                 </select>
                             </div>
-                            <div class="form-group"><input type="number" min="1" max="10" placeholder="Rating (1-10)" class="form-control"></div>
-                            <div class="form-group"><button onclick="dugme()" class="btn btn-success btn-block" style="background-color: #FDEEDC; color: #E38B29; border: none;">Save changes</button></div>
+                            <div class="form-group"><input type="number" name="rating" step="0.01" min="1" max="10" placeholder="Rating (1-10)" class="form-control" id="updateFormRating"></div>
+                            <div class="form-group"><input type="submit" class="btn btn-block" value="Save changes" style="background-color: #FDEEDC; color: #E38B29; border: none;"></div>
 
 
                         </form>
