@@ -156,7 +156,7 @@ $('#btnDeleteBeer').click(function () {
 
     request.done(function (response, textStatus, jqXHR) {
         if (response == "success") {
-            alert("Beer successfully deleted!")
+            // alert("Beer successfully deleted!")
             $(`#tr-${selectedRadio}`).remove()
 
         } else {
@@ -236,7 +236,7 @@ $('#searchByNameField').keyup(function () {
     })
 
     request.fail(function (jqXHR, textStatus, errorThrown) {
-        alert("Error occured: " + textStatus, errorThrown)
+        console.log("Error occured: " + textStatus, errorThrown)
     })
 
 })
@@ -365,6 +365,78 @@ function updateTableValues(obj) {
     $(`#table tbody #tr-${obj['beerID']}`).find("td").eq(4).html(obj['alcohol'])
     $(`#table tbody #tr-${obj['beerID']}`).find("td").eq(5).html(obj['size'])
     $(`#table tbody #tr-${obj['beerID']}`).find("td").eq(6).html(obj['rating'])
-    alert('Beer successfully updated!')
+    // alert('Beer successfully updated!')
 }
+
+// Sort
+// if the field search by name is active (something is written inside), ony those beers that meet the criteria will be sorted
+// if that field is empty than all beers that the user has will be sorted
+$('#btnOrderByRating').click(function () {
+    event.preventDefault()
+    $('#searchByIdField').val("")
+    let name = $('#searchByNameField').val()
+    name = "name=" + name
+
+    request = $.ajax({
+        url: "../handler/getBeersSortedByRating.php",
+        type: "post",
+        data: name
+    })
+
+    request.done(function (response, textStatus, jqXHR) {
+        if (!(response == "failedUserID" || response == 'failedName')) {
+            $('#table tbody').empty()
+            let array = response.split("}")
+            array.pop()
+            array.forEach(element => {
+                element = element + "}"
+
+                let obj = JSON.parse(element)
+
+                addObjectToTable(obj)
+            })
+        } else {
+            console.log(response);
+        }
+    })
+
+    request.fail(function (jqXHR, textStatus, errorThrown) {
+        console.log("Error occured: " + textStatus, errorThrown)
+    })
+})
+
+$('#btnOrderByName').click(function () {
+    event.preventDefault()
+    $('#searchByIdField').val("")
+    let name = $('#searchByNameField').val()
+    name = "name=" + name
+
+    request = $.ajax({
+        url: "../handler/getBeersSortedByName.php",
+        type: "post",
+        data: name
+    })
+
+    request.done(function (response, textStatus, jqXHR) {
+        if (!(response == "failedUserID" || response == 'failedName')) {
+            $('#table tbody').empty()
+            let array = response.split("}")
+            array.pop()
+            array.forEach(element => {
+                element = element + "}"
+
+                let obj = JSON.parse(element)
+
+                addObjectToTable(obj)
+            })
+        } else {
+            console.log(response);
+        }
+    })
+
+    request.fail(function (jqXHR, textStatus, errorThrown) {
+        console.log("Error occured: " + textStatus, errorThrown)
+    })
+})
+
 

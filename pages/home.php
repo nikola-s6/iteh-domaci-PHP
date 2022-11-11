@@ -49,7 +49,7 @@ if (!$beers) {
 
 
     <div class="wrapper d-flex align-items-stretch">
-        <nav id="sidebar">
+        <nav id="sidebar" class="active">
             <div class="custom-menu">
                 <button type="button" id="sidebarCollapse" class="btn btn-primary">
                     <i class="fa fa-bars"></i>
@@ -58,7 +58,8 @@ if (!$beers) {
             </div>
             <div class="p-4 pt-5">
                 <!-- <h1><a href="home.php" class="logo">Splash</a></h1> -->
-                <img src="/util/logo.png" alt="" srcset="" class="logo" style="width:80%; margin-bottom: 1.7vh; transform: translate(10%)">
+                <img src="/util/logo.png" alt="" srcset="" class="logo" style="width:80%; margin-bottom: 40px; transform: translate(10%)">
+                <h4 style="margin-bottom: 5px;">Hi, <?php echo $_SESSION['username'] ?></h4>
                 <ul class="list-unstyled components mb-5">
                     <li class="active">
                         <a href="#addSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Add new </a>
@@ -104,15 +105,16 @@ if (!$beers) {
                     <li>
                         <a href="#orderSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Order</a>
                         <ul class="collapse list-unstyled" id="orderSubmenu">
-                            <div class="form-group"><button onclick="dugme()" class="btn btn-success btn-block" style="background-color: #FDEEDC; color: #E38B29; border: none;">Order by Rating</button></div>
-                            <div class="form-group"><button onclick="dugme()" class="btn btn-success btn-block" style="background-color: #FDEEDC; color: #E38B29; border: none;">Order by Name</button></div>
+                            <div class="form-group"><button id="btnOrderByRating" class="btn btn-success btn-block" style="background-color: #FDEEDC; color: #E38B29; border: none;">Order by Rating</button></div>
+                            <div class="form-group"><button id="btnOrderByName" class="btn btn-success btn-block" style="background-color: #FDEEDC; color: #E38B29; border: none;">Order by Name</button></div>
                         </ul>
                     </li>
 
                     <li>
 
-                        <a href="#updateSubmenu" data-toggle="collapse" style="border-top:none;">
-                            <button id="btnUpdate" class="btn btn-success btn-block" style="background-color: #FDEEDC; color: #E38B29; border: none;">Update selected</button>
+                        <a href="#updateSubmenu" data-toggle="collapse" style="border-top:none;" class="dropdown-toggle">
+                            <!-- <button id="btnUpdate" class="btn btn-success btn-block" style="background-color: #FDEEDC; color: #E38B29; border: none;">Update selected</button> -->
+                            Update
                         </a>
 
                         <form method="POST" id="updateSubmenu" class="collapse">

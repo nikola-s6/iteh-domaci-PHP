@@ -137,4 +137,16 @@ class Beer
         $q = "update beer set name='$name', country='$country', type='$type', alcohol='$alcohol', size='$size', rating='$rating' where beerID='$beerID';";
         return $conn->query($q);
     }
+
+    public static function getBeersSortedByRating($userID, $name, mysqli $conn)
+    {
+        $q = "select * from beer where userID='$userID' and lower(name) like lower('%$name%') order by rating desc;";
+        return $conn->query($q);
+    }
+
+    public static function getBeersSortedByName($userID, $name, mysqli $conn)
+    {
+        $q = "select * from beer where userID='$userID' and lower(name) like lower('%$name%') order by name asc;";
+        return $conn->query($q);
+    }
 }
