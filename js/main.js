@@ -322,8 +322,8 @@ $('#updateSubmenu').submit(function () {
         "name": values[1],
         "country": values[2],
         "type": values[3],
-        "alcohol": values[4],
-        "size": values[5],
+        "size": values[4],
+        "alcohol": values[5],
         "rating": values[6]
     }
     console.log(serialized);
