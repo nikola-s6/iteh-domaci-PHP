@@ -18,8 +18,6 @@ $("#formRegister").submit(function () {
         if (response == 'success') {
             alert("You have successfully registered! Procees to login!")
             document.location.href = '../pages/login.php'
-        } else if (response == 'alreadyExixts') {
-            alert('This username already exixts!')
         } else if (response == 'error') {
             alert("Error while registering!")
         } else if (response == 'noMatch') {
@@ -27,6 +25,7 @@ $("#formRegister").submit(function () {
         } else if (response == 'notFilled') {
             alert("You must fill all fields!")
         } else {
+            alert('This username already exixts!')
             console.log("Error")
         }
         console.log(response);
